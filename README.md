@@ -1,0 +1,2 @@
+# jeremywho.com
+jeremywho blog
