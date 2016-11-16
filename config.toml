@@ -1,0 +1,13 @@
+author = "jeremy"
+baseurl = "https://jeremywho.com/"
+canonifyurls = true
+languageCode = "en-us"
+theme = "hugo-uno"
+title = "jeremywho"
+
+[Params]
+  AuthorName = "jeremy"
+  cover = "/images/background-cover.png"
+  cv = "/pages/cv"
+  github = "jeremywho"
+  twitter = "jeremywho"
