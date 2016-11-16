@@ -14,4 +14,4 @@ title = "test"
 
 +++
 
-This os a **Test Post** 
+This is a **Test Post** 
