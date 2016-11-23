@@ -19,6 +19,7 @@ Let's look at some simple ways to parse json in Golang, including one trick I wa
 
 <!--more-->
 
+<<<<<<< HEAD
 ---
 
 ### Parse simple json with map of empty interfaces
@@ -80,6 +81,15 @@ printing data `fmt.Println(data)` gives us:
 Now what if we want to access elements inside the array `fmt.Println(data["lastname"][0])`
 
     invalid operation: data["phoneNumbers"][0] (type interface {} does not support indexing)
+=======
+# h1 Heading
+## h2 Heading
+### h3 Heading
+#### h4 Heading
+##### h5 Heading
+###### h6 Heading
+##### h5 Heading
+>>>>>>> 25389c4d5a9557e850ee879626174a378b3f3a7f
 
 At this point `data["phoneNumbers"]` is an `interfact{}` that we need to convert to an array or slice of strings.
 We are kind of stuck, unless we want to use reflection, something like this: https://play.golang.org/p/gQhCTiwPAq 
