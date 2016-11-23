@@ -1,0 +1,13 @@
+name = "jeremywho"
+license = "MIT"
+licenselink = "https://raw.githubusercontent.com/alexurquhart/hugo-geo/master/LICENSE"
+description = "personal site of jeremy"
+homepage = "https://jeremywho.com"
+tags = ["blog"]
+features = ["blog", "responsive", "bootstrap"]
+min_version= 0.17
+
+[author]
+    name = "jeremy"
+    email = "jeremy@weebu.com"
+    url = "https://jeremywho.com"
