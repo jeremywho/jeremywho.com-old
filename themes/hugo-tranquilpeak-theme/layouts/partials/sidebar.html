@@ -1,5 +1,6 @@
 <nav id="sidebar" data-behavior="{{ .Scratch.Get "sidebarBehavior" }}">
   <div class="sidebar-container">
+    <!--<div class="sidebar-container-overlay">-->
       {{ with ($.Scratch.Get "authorPicture") }}
         <div class="sidebar-profile">
           <a href="{{ "/#about" }}">
@@ -20,5 +21,6 @@
       <ul class="sidebar-buttons">
         {{ partial "menu.html" (dict "menu" .Site.Menus.misc "root" $) }}
       </ul>
+      <!--</div>-->
   </div>
 </nav>

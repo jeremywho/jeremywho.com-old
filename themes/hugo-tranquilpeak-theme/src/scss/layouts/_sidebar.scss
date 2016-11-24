@@ -15,13 +15,23 @@
     @include prefix(font-smoothing, antialiased, 'webkit');
 
     .sidebar-container {
-        overflow: auto;                
+        overflow: auto;        
+        /*@include linear-gradient(140deg, rgba(#444444,.6) 20%, rgba(#000000,.9));        */
     }
 
-    .sidebar-overlay {
-        overflow: auto; 
-        background-color: rgba(68,68,68,.6);
-    }
+    /*.sidebar-container-overlay {
+        display: block;
+        position: absolute;
+        z-index: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background-color: rgba(68, 68, 68, 0.6);
+        background-image: -webkit-linear-gradient(-410deg, rgba(68, 68, 68, 0.6) 20%, rgba(0, 0, 0, 0.9));
+        background-image: linear-gradient(140deg,rgba(68, 68, 68, 0.6) 20%, rgba(0, 0, 0, 0.9)); 
+    }*/
+
     // Author information
     .sidebar-profile {
         color:         map-get($sidebar, color);
