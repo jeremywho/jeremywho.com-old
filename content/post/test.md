@@ -18,6 +18,7 @@ highlight = true
 Let's look at some simple ways to parse json in Golang, including one trick I was not aware of.
 
 <!--more-->
+
 ---
 
 ### Parse simple json with map of empty interfaces
