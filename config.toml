@@ -3,7 +3,7 @@ languageCode = "en-us"
 title = "jeremywho"
 theme = "hugo-tranquilpeak-theme"
 #DisqusShortname = "hugo-tranquilpeak-theme"
-# googleAnalytics = "UA-123-45"
+googleAnalytics = "UA-36721680-1"
 Paginate = 7
 canonifyurls = true
 
@@ -21,12 +21,13 @@ canonifyurls = true
   job = "human person"
   location = "US"
   # Your Gravatar email. Overwrite `author.picture` everywhere in the blog
-  #gravatar_email = "thibaud.lepretre@gmail.com"
+  # gravatar_email = "jeremy@weebu.com"
   # Your profile picture
   # Overwritten by your gravatar image if `author.gravatar` is filled
-  picture = "https://cdn1.iconfinder.com/data/icons/ninja-things-1/1772/ninja-simple-512.png"
+  # picture = "https://cdn1.iconfinder.com/data/icons/ninja-things-1/1772/ninja-simple-512.png"
+  picture = "/images/profile.png"
   # Your Twitter username without the @. E.g : thibaudlepretre
-  # twitter = "thibaudlepretre"
+  twitter = "jeremywho"
   # Your google plus profile id. E.g : +ThibaudLepretre or 114625208755123718311
   # google_plus = "+ThibaudLepretre"
 
