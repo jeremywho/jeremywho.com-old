@@ -112,14 +112,29 @@
 @mixin sidebar-xlg {
     width:      map-get($sidebar, xlg-screen-width);
     box-sizing: border-box;
-    padding:    0 80px;
+    /*padding:    0 80px;*/
     .sidebar-container {
+        position:          relative;
+        height: 100%;
+        /*top:               50%;
+        transform:         translateY(-50%);
+        -webkit-transform: translateY(-50%);
+        -moz-transform:    translateY(-50%);*/
+    }
+
+    .sidebar-container-overlay {
+        position:          relative;
+        padding:    0 80px;
+    }
+
+    .sidebar-content-container {
         position:          relative;
         top:               50%;
         transform:         translateY(-50%);
         -webkit-transform: translateY(-50%);
         -moz-transform:    translateY(-50%);
     }
+
     // Author information
     .sidebar-profile {
         padding-top:    0;
