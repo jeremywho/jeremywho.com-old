@@ -17,8 +17,8 @@ canonifyurls = true
 
 [author]
   name = "jeremy"
-  #bio = "Super bio with markdown support **COOL**"
-  job = "human person"
+  bio = "Late bloomer"
+  job = "I identify as a human person"
   location = "US"
   # Your Gravatar email. Overwrite `author.picture` everywhere in the blog
   # gravatar_email = "jeremy@weebu.com"

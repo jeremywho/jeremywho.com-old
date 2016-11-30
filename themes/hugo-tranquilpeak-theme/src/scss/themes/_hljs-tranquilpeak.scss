@@ -10,6 +10,10 @@ code {
     background-color: map-get($highlight, 'background');
 }
 
+pre > code.codeblock {
+    overflow-x: auto;
+}
+
 // Tabbed code block tab
 .codeblock--tabbed figcaption .tab.active {
     background: map-get($colors, 'primary');
