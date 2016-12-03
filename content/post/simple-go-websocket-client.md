@@ -11,7 +11,7 @@ Categories = [
   "GoLang",
 ]
 
-date = "2016-11-15T16:26:13-08:00"
+date = "2016-12-01"
 title = "Simple websocket client in Go using gorilla websocket"
 highlight = true
 
