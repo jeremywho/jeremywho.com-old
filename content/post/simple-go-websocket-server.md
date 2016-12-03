@@ -25,6 +25,8 @@ Make a simple websocket echo server using gorilla/websocket.
 
 View the source code: https://gist.github.com/jeremywho/2bb5f9fd98b13b048ab7b8f5a0d2a68c
 
+**Please note that this sample app has no error handling**
+
 ### Step 1 - Setup http server
 
 Let's look at the main function

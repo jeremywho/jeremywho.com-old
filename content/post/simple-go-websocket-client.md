@@ -26,6 +26,8 @@ but in this case, we are going to create a client that keeps sending a timestamp
 
 View the source code: https://gist.github.com/jeremywho/c101d3bfdfff23ab0443477ef6e600af
 
+**Please note that this sample app has no error handling**
+
 ### Step 1 - dial the server
 
     URL := "ws://echo.websocket.org/"
