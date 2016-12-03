@@ -17,7 +17,7 @@ highlight = true
 
 +++
 
-Make a simple websocket echo server using gorilla/websocket. 
+Make a simple websocket echo server using [gorilla/websocket](https://github.com/gorilla/websocket). 
 
 <!--more-->
 

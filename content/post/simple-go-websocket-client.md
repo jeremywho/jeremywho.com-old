@@ -17,7 +17,7 @@ highlight = true
 
 +++
 
-Make a simple websocket client using gorilla/websocket. Typically echo examples are saved for servers, 
+Make a simple websocket client using [gorilla/websocket](https://github.com/gorilla/websocket). Typically echo examples are saved for servers, 
 but in this case, we are going to create a client that keeps sending a timestamp every n seconds to an echo server at http://www.websocket.org/echo.html
 
 <!--more-->
