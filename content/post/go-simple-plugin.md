@@ -35,7 +35,7 @@ _**Special thanks to [@GrimTheReaper](https://github.com/GrimTheReaper) for help
 
 View the code here: https://github.com/jeremywho/pluginTest
 
-### Step 0 - Setup Go 1.8beta1 in a docker container
+## Step 0 - Setup Go 1.8beta1 in a docker container
 
 With docker installed, create a directory with a Dockerfile that contains:
 
@@ -57,7 +57,7 @@ Then run:
 
 You should now be ready to follow along!
 
-### Step 1 - Create the plugin
+## Step 1 - Create the plugin
 
 Our plugin:
 
@@ -69,7 +69,7 @@ Our plugin:
 
 A simple method to add to integers. That's it for this example.  
 
-### Step 2 - Build the plugin
+## Step 2 - Build the plugin
 
 According to the [documentation](https://beta.golang.org/pkg/plugin/#pkg-overview) we can build plugins with:
     
@@ -88,7 +88,7 @@ If you take a look in your directory, you should see the `myplugin.so` library:
 
 Now that we have a shared library, we can...
 
-### Step 3 - Load the plugin
+## Step 3 - Load the plugin
 
 Make sure the `plugin` package is imported.
 
@@ -105,7 +105,7 @@ Next we call [`plugin.Lookup()`](https://beta.golang.org/pkg/plugin/#Plugin.Look
 
 A [`Symbol`](https://beta.golang.org/pkg/plugin/#Symbol) is can be "any exported variable or function".
 
-### Step 4 - Use it!
+## Step 4 - Use it!
 
 Here is how we call your plugin method:
 
@@ -136,7 +136,7 @@ Thats it!  We can run our program and see the results:
     root@cc5dae79d6fe:/go/src/github.com/jeremywho/pluginTest# go run main.go
     3    
 
-### Note
+## Note
 
 Something that was pointed out by [@GrimTheReaper](https://github.com/GrimTheReaper) is the size of binary plugin files:
 
