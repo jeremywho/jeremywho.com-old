@@ -25,11 +25,12 @@ Let's take a look at creating and using one.
 
 ---
 
-**Please note that this sample app has no error handling**
+**Please note that sometimes I leave out error handling for sample apps**
 
 **Plugins are a feature available starting in Go 1.8, this post was created using [Go 1.8beta](https://golang.org/dl/#go1.8beta1)**
+**Currently plugins only work on Linux and Darwin.**
 
-_**Special thanks to [@AWildTyphlosion](https://twitter.com/AWildTyphlosion) for helping with the initial sample app and a docker container running go 1.8beta1!**_ 
+_**Special thanks to [@GrimTheReaper](https://github.com/GrimTheReaper) for helping with the initial sample app and a docker container running go 1.8beta1!**_ 
 
 View the code here: https://github.com/jeremywho/pluginTest
 
@@ -136,7 +137,7 @@ Thats it!  We can run our program and see the results:
 
 ### Note
 
-Something that was pointed out by [@AWildTyphlosion](https://twitter.com/AWildTyphlosion) is the size of binary plugin files:
+Something that was pointed out by [@GrimTheReaper](https://github.com/GrimTheReaper) is the size of binary plugin files:
 
     -rw-r--r-- 1 root root     198 Dec  5 20:14 main.go
     -rw-r--r-- 1 root root      56 Dec  5 20:00 myplugin.go
