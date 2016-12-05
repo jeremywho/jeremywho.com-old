@@ -12,7 +12,7 @@ Categories = [
   "GoLang",
 ]
 
-date = "2016-12-04"
+date = "2016-12-05"
 title = "Go 1.8 - Plugins!"
 highlight = true
 
