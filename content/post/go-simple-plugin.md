@@ -25,13 +25,37 @@ Let's take a look at creating and using one.
 
 ---
 
-**This is a feature available starting in Go 1.8.  This blog post was created using [Go 1.8beta](https://golang.org/dl/#go1.8beta1)**
+**Please note that this sample app has no error handling**
+
+**Plugins are a feature available starting in Go 1.8, this post was created using [Go 1.8beta](https://golang.org/dl/#go1.8beta1)**
 
 _**Special thanks to [@AWildTyphlosion](https://twitter.com/AWildTyphlosion) for helping with the initial sample app and a docker container running go 1.8beta1!**_ 
 
-View the code here: https://gist.github.com/jeremywho/e59501056efca467c996e7aac311dc84
+View the code here: https://github.com/jeremywho/pluginTest
 
-### Create the plugin
+### Step 0 - Setup Go 1.8beta1 in a docker container
+
+With docker installed, create a directory with a Dockerfile that contains:
+
+    from golang:1.8beta1-wheezy
+
+    CMD ["bash"]
+
+Inside that directory run the following:
+
+    docker build -t go1.8 . && docker run -it go1.8
+
+You should now be at the command prompt inside your container:
+
+    root@cc5dae79d6fe:/go#
+
+Then run:
+
+    go get github.com/jeremywho/pluginTest && cd $GOPATH/src/github.com/jeremywho/pluginTest
+
+You should now be ready to follow along!
+
+### Step 1 - Create the plugin
 
 Our plugin:
 
@@ -43,7 +67,7 @@ Our plugin:
 
 A simple method to add to integers. That's it for this example.  
 
-### Build the plugin
+### Step 2 - Build the plugin
 
 According to the [documentation](https://beta.golang.org/pkg/plugin/#pkg-overview) we can build plugins with:
     
@@ -62,7 +86,7 @@ If you take a look in your directory, you should see the `myplugin.so` library:
 
 Now that we have a shared library, we can...
 
-### Load the plugin
+### Step 3 - Load the plugin
 
 Make sure the `plugin` package is imported.
 
@@ -79,7 +103,7 @@ Next we call [`plugin.Lookup()`](https://beta.golang.org/pkg/plugin/#Plugin.Look
 
 A [`Symbol`](https://beta.golang.org/pkg/plugin/#Symbol) is can be "any exported variable or function".
 
-### Use it!
+### Step 4 - Use it!
 
 Here is how we call your plugin method:
 
