@@ -3,9 +3,9 @@ Description = "Go 1.8 - Plugins!"
 Tags = [
   "Development",
   "golang",
-  "testing",
+  "go1.8",
   "go",
-  "unit testing"   
+  "plugin"
 ]
 Categories = [
   "Development",
