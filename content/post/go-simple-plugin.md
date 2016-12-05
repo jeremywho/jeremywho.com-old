@@ -28,7 +28,8 @@ Let's take a look at creating and using one.
 **Please note that sometimes I leave out error handling for sample apps**
 
 **Plugins are a feature available starting in Go 1.8, this post was created using [Go 1.8beta](https://golang.org/dl/#go1.8beta1)**
-**Currently plugins only work on Linux and Darwin.**
+
+##### Currently plugins only work on Linux and Darwin.
 
 _**Special thanks to [@GrimTheReaper](https://github.com/GrimTheReaper) for helping with the initial sample app and a docker container running go 1.8beta1!**_ 
 
