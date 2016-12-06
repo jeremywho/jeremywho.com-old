@@ -37,15 +37,20 @@ View the code here: https://github.com/jeremywho/pluginTest
 
 ## Step 0 - Setup Go 1.8beta1 in a docker container
 
-With docker installed, create a directory with a Dockerfile that contains:
+With docker installed, 
+~~create a directory with a Dockerfile that contains:~~
 
-    from golang:1.8beta1-wheezy
+~~from golang:1.8beta1-wheezy~~
 
-    CMD ["bash"]
+~~CMD ["bash"]~~
 
-Inside that directory run the following:
+~~Inside that directory run the following:~~
 
-    docker build -t go1.8 . && docker run -it go1.8
+~~docker build -t go1.8 . && docker run -it go1.8~~
+
+Run the following command (thanks [skelterjohn](https://www.reddit.com/user/skelterjohn) for the easier [command](https://www.reddit.com/r/golang/comments/5gosug/go_18_plugins/dauqesv/)):
+
+    docker run -it --entrypoint bash golang:1.8beta1-wheezy
 
 You should now be at the command prompt inside your container:
 
