@@ -103,7 +103,7 @@ Next we call [`plugin.Lookup()`](https://beta.golang.org/pkg/plugin/#Plugin.Look
 
     add, _ := p.Lookup("Add")
 
-A [`Symbol`](https://beta.golang.org/pkg/plugin/#Symbol) is can be "any exported variable or function".
+A [`Symbol`](https://beta.golang.org/pkg/plugin/#Symbol) can be "any exported variable or function".
 
 ## Step 4 - Use it!
 
