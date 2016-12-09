@@ -29,9 +29,10 @@ _**Special thanks to [@GrimTheReaper](https://github.com/GrimTheReaper) for help
 
 View the code here: https://github.com/jeremywho/gowget
 
-Ok, its not a full clone of wget.  But it lets you download a file and save the output!
+Ok, its not a full clone of wget, but it does let you download a file and save the output!
 
 ### Command line progress indicator 
+
 Let's start with the progress indicator:
 
     func printProgress(curr, total float64) {
@@ -95,7 +96,7 @@ I used this to build mine:
 
     go build -o wget main.go
 
-Now I can download things!!
+Now we can download things!!
 
     ./wget http://ipv4.download.thinkbroadband.com/5MB.zip output.zip
 
