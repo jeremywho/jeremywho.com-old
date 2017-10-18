@@ -45,10 +45,8 @@
         .sidebar-profile-picture {
             display: block;
             margin:  0 auto;
-            /*border-radius: 50%;*/
             border: 1px solid white;
             background-color: white;
-            /*padding: 10px;*/
         }
         .sidebar-profile-name {
             font-size: 1.1em;
@@ -185,6 +183,13 @@
 // display author bio only on extra large screen
 @media #{$large-and-down} {
     #sidebar .sidebar-profile-bio {
+        display: none;
+    }
+}
+
+// Hide sidebar in print layout
+@media print {
+    #sidebar {
         display: none;
     }
 }

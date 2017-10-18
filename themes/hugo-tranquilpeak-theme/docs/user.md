@@ -4,7 +4,7 @@ A gorgeous responsive theme for Hugo blog framework
 
 [![Tranquilpeak](../showcase.png)](https://tranquilpeak.kakawait.com)
 
-Tranquilpeak theme is compatible with Hugo `v0.17`.
+Tranquilpeak theme is compatible with Hugo `v0.20`.
 
 This documentation will help you to install hugo-tranquilpeak-theme and configure it to use all features which it provides.  
 
@@ -18,12 +18,17 @@ If you want to report a bug or ask a question, [create an issue](https://github.
 - [Requirements](#requirements)
 - [Installation](#installation)
 - [Tranquilpeak configuration](#tranquilpeak-configuration)
+    - [Language configuration](#language-configuration)
+        * [Menu translation](#menu-translation)
     - [Theme configuration](#theme-configuration)
+        * [Define date format](#define-date-format)
+        * [Define global keywords](#define-global-keywords)
         * [Sidebar](#sidebar)
         * [Header](#header)
         * [Author](#author)
         * [Customization](#customization)
         * [Integrated services](#integrated-services)
+        * [Sharing options](#sharing-options)
         * [Enable pages](#enable-pages)
 - [Integrated services configuration](#integrated-services-configuration)
     * [Google Analytics](#google-analytics)
@@ -43,13 +48,14 @@ If you want to report a bug or ask a question, [create an issue](https://github.
         * [Tabbed code block](#tabbed-code-block)
         * [Wide image](#wide-image)
         * [Fancybox](#fancybox)
+- [Writing pages](#writing-pages)
 - [Running](#running)  
 
 ## General
 
 - **Authors**: [Louis Barranqueiro (LouisBarranqueiro)](https://github.com/LouisBarranqueiro) and [Thibaud Leprêtre (kakawait)](https://github.com/kakawait)
-- **Version**: 0.1.4-ALPHA (based on Hexo version 1.9.1)
-- **Compatibility**: Hugo v0.17
+- **Version**: 0.4.1-BETA (based on Hexo version 1.10.0)
+- **Compatibility**: Hugo v0.20.1
 
 ## Features
 
@@ -63,6 +69,7 @@ If you want to report a bug or ask a question, [create an issue](https://github.
 - Beautiful about page
 - Support Open Graph protocol
 - Easily customizable (fonts, colors, layout elements, code coloration, etc..)
+- Support internationalization (i18)
   
 **Posts features:**  
 
@@ -85,12 +92,9 @@ If you want to report a bug or ask a question, [create an issue](https://github.
 
 ### Missing features from original *Hexo* version
 
-- [ ] Support internationalization (i18) (https://github.com/kakawait/hugo-tranquilpeak-theme/issues/9)
-- [ ] Duoshuo
 - [ ] Baidu analytics
 - [ ] Algolia (https://github.com/kakawait/hugo-tranquilpeak-theme/issues/8)
-- [ ] Documentations (https://github.com/kakawait/hugo-tranquilpeak-theme/issues/4)
-- [ ] Pagination custumization `tag_pagination`, `category_pagination` and `archive_pagination` (https://github.com/kakawait/hugo-tranquilpeak-theme/issues/17)
+- [ ] Pagination custumization `tagPagination`, `categoryPagination` and `archivePagination` (https://github.com/kakawait/hugo-tranquilpeak-theme/issues/17)
 
 **ATTENTION** following features will not be possible due to *Hugo* limitations
 
@@ -99,7 +103,7 @@ If you want to report a bug or ask a question, [create an issue](https://github.
 
 ## Requirements
 
-1. **Hugo** : `v0.17`
+1. **Hugo** : `v0.20`
 
 ## Installation
 
@@ -116,9 +120,68 @@ git clone https://github.com/kakawait/hugo-tranquilpeak-theme.git
 
 If it's your first time using Hugo, please check [Hugo official documentation](https://gohugo.io/overview/introduction/)
 
+### Language configuration
+
+Simply edit following value in `config.{toml,yaml,json}`:
+
+```toml
+defaultContentLanguage = "en-us"
+```
+
+by one of the following code (code is between `()`):
+
+- Chinese (`zh-cn`)
+- Chinese Traditional (`zh-tw`)
+- English (`en-us`)
+- Deutsch (`de-de`)
+- French (`fr-fr`)
+- Japanase (`ja`)
+- Portuguese (`pt-br`)
+- Russian (`ru`)
+- Spanish (`es`)
+- Vietnamese (`vi`)
+
+If your language is not available, follow this guidelines (E.g : add swedish language (`sv-se`)) :  
+
+1. Set `defaultContentLanguage` to `sv-se` in Hugo configuration file `config.{toml,yaml,json}`  
+2. Create `sv-se.yaml` file in `theme/tranquilpeak/i18n/` folder  
+3. Copy the content of `theme/tranquilpeak/i18n/en-us.yaml` and paste it to `sv-se.yml` file  
+4. Replace all strings in english by their translation in swedish    
+
+#### Menu translation
+
+Menus are defined using Hugo menus https://gohugo.io/extras/menus/
+
+You can translate menu entries by setting `identifier` that matches a translation key. By using this way, `name` will not be use at all.
+
 ### Setting up default theme to Tranquilpeak
 
 Modify the theme in `config.{toml,yml,json}` by changing `theme` variable to `tranquilpeak`
+
+### Define date format
+
+By default date will be printed like following: `mmmm d, yyyy`, example: "January 2, 2006"
+
+You can customize it by setting
+
+```toml
+[params]
+  dateFormat = "2 January 2006"
+```
+
+Will produce: "2 January 2006"
+
+ATTENTION: date format should respect `go` `Time` package syntax, please refer to https://golang.org/pkg/time/
+
+**Moreover, if you are using fully named month (short named month like "jan", "feb", etc is not supported), month will be translated.**
+
+Example: 
+
+```toml
+defaultContentLanguage = "fr-fr"
+```
+
+"21 July 2006" will be output "21 Juillet 2006". 
 
 ### Define global keywords
 
@@ -219,6 +282,8 @@ You can add groups of links and links much as you want.
 | url        | menu entry url                        | string        |
 | class      | CSS Class added to the `a` link tag   | string        |
 
+`identifier` can be use for translation see [Menu translation](#menu-translation).
+
 #### Header
 
 The right link of the header is customizable. You can add a link (as an icon) at the right of the header instead of the author's gravatar image or author's picture. By default, author's gravatar or author's picture is displayed.  
@@ -226,7 +291,7 @@ The right link of the header is customizable. You can add a link (as an icon) at
 E.g to display a shortcut to open algolia search window :
 
 ```toml
-[params.header.right_link]
+[params.header.rightLink]
   class = "open-algolia-search"
   icon = "search"
   url = "/#search"
@@ -247,62 +312,94 @@ E.g to display a shortcut to open algolia search window :
   job = "Java backend developer"
   location = "France"
   # Your Gravatar email. Overwrite `author.picture` everywhere in the blog
-  gravatar_email = "thibaud.lepretre@gmail.com"
+  gravatarEmail = "thibaud.lepretre@gmail.com"
   # Your profile picture
-  # Overwritten by your gravatar image if `author.gravatar` is filled
+  # Overwritten by your gravatar image if `author.gravatarEmail` is filled
   picture = "https://cdn1.iconfinder.com/data/icons/ninja-things-1/1772/ninja-simple-512.png"
   # Your Twitter username without the @. E.g : tranquilpeak
   twitter = "thibaudlepretre"
   # Your google plus profile id. E.g : +ThibaudLepretre or 114625208755123718311
-  google_plus = "+ThibaudLepretre"
+  googlePlus = "+ThibaudLepretre"
 ```
   
-| Variable       | Description                                                                          |
-|----------------|--------------------------------------------------------------------------------------|
-| name           | Your name                                                                            |
-| gravatar_email | This address will be used to get your gravatar image if you activate gravatar option |
-| bio            | Your biography (Markdown and HTML supported)                                         |
-| job            | Your job                                                                             |
-| location       | Your location                                                                        |
-| picture        | Your profile picture. Overwritten by your gravatar image if gravatar email is filled |
-| twitter        | Your Twitter username without the @. E.g : `thibaudlepretre`                         |
-| google_plus    | Your google plus profile id. E.g : `+ThibaudLepretre` or `114625208755123718311`     |
+| Variable        | Description                                                                          |
+|-----------------|--------------------------------------------------------------------------------------|
+| name            | Your name                                                                            |
+| gravatarEmail   | This address will be used to get your gravatar image if you activate gravatar option |
+| bio             | Your biography (Markdown and HTML supported)                                         |
+| job             | Your job                                                                             |
+| location        | Your location                                                                        |
+| picture         | Your profile picture. Overwritten by your gravatar image if gravatar email is filled |
+| twitter         | Your Twitter username without the @. E.g : `thibaudlepretre`                         |
+| googlePlus      | Your google plus profile id. E.g : `+ThibaudLepretre` or `114625208755123718311`     |
 
 #### Customization
 
+**ATTENTION** not all customizations are documented here, you may checkout [sample config.toml](https://github.com/kakawait/hugo-tranquilpeak-theme/blob/master/exampleSite/config.toml).
+
 ```toml
 [params]
-  sidebar_behavior = 1
-  thumbnail_image = true
-  thumbnail_image_position = "right"
-  auto_thumbnail_image = true
-  cover_image = "cover.jpg"
-  favicon =
-  image_gallery = true
-  archive_pagination = true
-  category_pagination = true
-  tag_pagination = true
-  hierarchical_categories = true
+  sidebarBehavior = 1
+  thumbnailImage = true
+  thumbnailImagePosition = "right"
+  autoThumbnailImage = true
+  coverImage = "cover.jpg"
+  favicon = /favicon.png
+  imageGallery = true
+  hierarchicalCategories = true
 ```
 
 | Variable | Description |
 |--------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| sidebar_behavior | Define the behavior of the header and sidebar :<ul><li>1: Display extra large sidebar on extra large screen, large sidebar on large screen, medium sidebar on medium screen and header bar on small screen and extra large sidebar is swiped on extra large screen and large sidebar on all lower screens when open button is clicked (default)</li><li>2: Display large sidebar on extra large & large screen, medium sidebar on medium screen and header bar on small screen and large sidebar is swiped when open button is clicked</li><li>3: Display medium sidebar on large and medium screen and header bar on small screen and medium sidebar is swiped when open button is clicked</li><li>4: Display header bar on all screens, extra large sidebar is swiped on extra large screen and large sidebar is swiped on all lower screens</li><li>5: Display header bar on all screens and large sidebar is swiped on large screen</li><li>6: isplay header bar on all screens and medium sidebar is swiped</li></ul> |
-| clear_reading | Hide sidebar on all article page to let article take full width to improve reading, and enjoy wide images and cover images. Useless if `sidebar_behavior` is equal to `3` or `4`. (true: enable, false: disable). Default behavior : `theme.clear_reading` value in theme configuration file. |
-| thumbnail_image | Display thumbnail image of each post on index pages |
-| thumbnail_image_position | Display thumbnail image at the right of title in index pages (`right`, `left` or `bottom`). Set this value to `right` if you have old posts to keep the old style on them and define `thumbnailImagePosition` on a post to overwrite this setting. (Default : `right`) |
-| auto_thumbnail_image | Automatically select the cover image or the first photo from the gallery of a post if there is no thumbnail image as the thumbnail image. Set this value to `true` if you have old posts that use the cover image or the first photo as the thumbnail image and set `autoThumbnailImage` to `false` on a post to overwrite this setting. (Default : `true`) |
-| cover_image | Your blog cover picture. **I STRONGLY recommend you to use a CDN to speed up loading of pages. There is many free CDN like Cloudinary or you can also use indirectly by using services like Google Photos.** |
-| favicon | Your favicon path |
-| image_gallery | Display an image gallery at the end of a post which have `photos` variables. (false: disabled, true: enabled) |
-| hierarchical_categories | Define categories will create hierarchy between parents: `categories = ["foo", "bar"]` will consider "bar" a sub-category of "foo". If false it will flat categories. |
+| sidebarBehavior | Define the behavior of the header and sidebar :<ul><li>1: Display extra large sidebar on extra large screen, large sidebar on large screen, medium sidebar on medium screen and header bar on small screen and extra large sidebar is swiped on extra large screen and large sidebar on all lower screens when open button is clicked (default)</li><li>2: Display large sidebar on extra large & large screen, medium sidebar on medium screen and header bar on small screen and large sidebar is swiped when open button is clicked</li><li>3: Display medium sidebar on large and medium screen and header bar on small screen and medium sidebar is swiped when open button is clicked</li><li>4: Display header bar on all screens, extra large sidebar is swiped on extra large screen and large sidebar is swiped on all lower screens</li><li>5: Display header bar on all screens and large sidebar is swiped on large screen</li><li>6: isplay header bar on all screens and medium sidebar is swiped</li></ul> |
+| clearReading | Hide sidebar on all article page to let article take full width to improve reading, and enjoy wide images and cover images. Useless if `sidebarBehavior` is equal to `3` or `4`. (true: enable, false: disable). Default behavior : `params.clearReading` value in theme configuration file. |
+| thumbnailImage | Display thumbnail image of each post on index pages |
+| thumbnailImagePosition | Display thumbnail image at the right of title in index pages (`right`, `left` or `bottom`). Set this value to `right` if you have old posts to keep the old style on them and define `thumbnailImagePosition` on a post to overwrite this setting. (Default: `right`) |
+| autoThumbnailImage | Automatically select the cover image or the first photo from the gallery of a post if there is no thumbnail image as the thumbnail image. Set this value to `true` if you have old posts that use the cover image or the first photo as the thumbnail image and set `autoThumbnailImage` to `false` on a post to overwrite this setting. (Default : `true`) |
+| coverImage | Your blog cover picture. **I STRONGLY recommend you to use a CDN to speed up loading of pages. There is many free CDN like Cloudinary or you can also use indirectly by using services like Google Photos.** |
+| favicon | Your favicon path (Default: `/favicon.png`) |
+| imageGallery | Display an image gallery at the end of a post which have `photos` variables. (false: disabled, true: enabled) |
+| hierarchicalCategories | Define categories will create hierarchy between parents: `categories = ["foo", "bar"]` will consider "bar" a sub-category of "foo". If false it will flat categories. |
+| customCSS (_DEPRECATED see [Add custom JS or CSS using configuration](#add-custom-js-or-css-using-configuration)_) | Define files with css that override or extend the theme css: `customCSS` = ["css/mystyles.css"]. |
+| customJS (_DEPRECATED see [Add custom JS or CSS using configuration](#add-custom-js-or-css-using-configuration)_) | Define files with js that override or extend the theme js: `customJS` = ["js/myscripts.js"]. |
 
 E.g :  
-A category page look like this with `hierarchical_categories = true` :  
-![hierarchical_categories true](img/with_hierarchical_categories.png)  
+A category page look like this with `hierarchicalCategories = true` :  
+![hierarchicalCategories true](img/with_hierarchical_categories.png)  
 
-The same page with `hierarchical_categories = false`:  
-![hierarchical_categories false](img/without_hierarchical_categories.png)  
+The same page with `hierarchicalCategories = false`:  
+![hierarchicalCategories false](img/without_hierarchical_categories.png)  
+
+##### Add custom JS or CSS using configuration
+
+If you need to add some additionnal javascript or css files to your blog without forking or overriding theme itself you could use following configuration:
+
+```toml
+[params]
+  [[params.customJS]]
+    src = "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/languages/go.min.js"
+    integrity = "sha256-LVuWfOU0rWFMCJNl1xb3K2HSWfxtK4IPbqEerP1P83M="
+    crossorigin = "anonymous"
+    async = true
+    defer = true
+
+  [[params.customJS]]
+    src = "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/languages/dockerfile.min.js"
+    integrity = "sha256-putofyQv7OB569xAldpyBnHJ0Uc+7VGp5Us05IgDGss="
+    crossorigin = "anonymous"
+    async = true
+    defer = true
+
+  [[params.customJS]]
+    src = "js/myscript.js"
+
+  [[params.customCSS]]
+    href = "css/mystyle.css"
+```
+
+**ATTENTION** there is no limitation on key structures and each keys will be converted as tag attributes.
+
+Futhermore, even if previous syntax is still supported (`customJS = ["js/myscripts.js"]`), you can't mix both new and old syntax.
 
 #### Integrated services
 
@@ -313,24 +410,60 @@ googleAnalytics =
 
 ```toml
 [author]
-  gravatar_email =
+  gravatarEmail =
 ```
 
 ```toml
 [params]
-  fb_admin_ids = 
-  fb_app_id = 
+  fbAdminIds = 
+  fbAppId = 
 ```
 
 | Variable | Description |
 |---------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | disqusShortname | Your Disqus shortname. |
-| gravatar_email | Your gravatar email. Overwrite `author.picture` everywhere in the blog |
+| gravatarEmail | Your gravatar email. Overwrite `author.picture` everywhere in the blog |
 | googleAnalytics | Your Google analystics web property ID : UA-XXXXX-X |
-| fb_admin_ids | Your Facebook user ids used to connect your blog with your facebook user accounts (Facebook Insights). Separate ids with comma. E.g : `9830047,1003342`. Visit [Facebook docs](https://developers.facebook.com/docs/platforminsights/domains) for more information. |
-| fb_app_id | Your Facebook app id used to connect your blog with your facebook app account (Facebook Insights). E.g : `9841307`. Visit [Facebook docs](https://developers.facebook.com/docs/platforminsights/domains) for more information. |
+| fbAdminIds | Your Facebook user ids used to connect your blog with your facebook user accounts (Facebook Insights). Use array syntax. E.g : `[9830047, 1003342]`. Visit [Facebook docs](https://developers.facebook.com/docs/platforminsights/domains) for more information. |
+| fbAppId | Your Facebook app id used to connect your blog with your facebook app account (Facebook Insights). E.g : `9841307`. Visit [Facebook docs](https://developers.facebook.com/docs/platforminsights/domains) for more information. |
 
-### Enable pages ###
+#### Sharing options
+
+``` toml
+[params]
+  [[params.sharingOptions]]
+    name = "Facebook"
+    icon = "fa-facebook-official"
+    url = "https://www.facebook.com/sharer/sharer.php?u=%s"
+
+  [[params.sharingOptions]]
+    name = "Twitter"
+    icon = "fa-twitter"
+    url = "https://twitter.com/intent/tweet?text=%s"
+
+  [[params.sharingOptions]]
+    name = "Google+"
+    icon = "fa-google-plus"
+    url = "https://plus.google.com/share?url=%s"
+```
+
+You can comment and uncomment to enable or disable sharing options. If your own sharing options, simply add new sharing options on your configuration. E.g with **foo_bar** social network:
+
+```toml
+[params]
+  [[params.sharingOptions]]
+    name = "Foo bar"
+    icon = "fa-foo-bar"
+    url = "https://www.foo-bar.com/sharer/sharer.php?u=%s"
+```
+
+|Variable|Description|
+|---|---|
+|name| Name of your sharing site.|
+|icon|Name of the fontawesome icon class (Go to [font-awesome icons](http://fontawesome.io/icons/) to find class name of icon)|
+|url|URL of the link. use %s to specify where to put the permalink.|
+
+#### Enable pages
 
 Tranquilpeak provides you 2 pages to display all posts title and date by tags, by categories, by date and an about page. To enable one of this pages simply add following [taxonomies](https://gohugo.io/taxonomies/overview/):
 
@@ -360,15 +493,15 @@ Follow these steps, to add new filter :
 7. Select **Custom filter**, **Filter Field** : `Hostname`, **Filter Pattern** :  `(.*?localhost.*?)`
 8. Click on **Save** button
 
-## Quick & easy modifications ##
+## Quick & easy modifications
 
-### Prerequisites ###
+### Prerequisites
 
 Since you are going to edit the theme, you have to install all the necessary to build it after changes : [Installation](https://github.com/LouisBarranqueiro/hexo-theme-tranquilpeak/blob/master/docs/developer.md#installation)
 
 **Run command in theme folder : `hexo-blog/themes/tranquilpeak`**
 
-### Change global style ###
+### Change global style
 
 If you want to change font families, font size, sidebar color, things like that, take a look at `source/scss/utils/_variables.scss` file. This file contains global variables used in this theme. **Build the theme after changes to see changes.**
 
@@ -416,23 +549,33 @@ gallery:
     - http://i.imgur.com/o9r19kD.jpg "Dubai"
     - https://example.com/orignal.jpg https://example.com/thumbnail.jpg "Sidney"
 comments: false
+showTags: true
+showPagination: true
+showSocial: true
+showDate: true
 ```
 
 |Variable|Description|
 |---|---|
 |disqusIdentifier|Define a unique string which is used to look up a page's thread in the Disqus system.|
 |keywords|Define keywords for search engines. you can also define global keywords in Hugo configuration file.|
-|clearReading|Hide sidebar on all article page to let article take full width to improve reading, and enjoy wide images and cover images. Useless if `theme.sidebar_behavior` is equal to `3` or `4`. (true: enable, false: disable). Default behavior : `theme.clear_reading` value in theme configuration file.|
-|autoThumbnailImage|Automatically select the cover image or the first photo from the gallery of a post if there is no thumbnail image as the thumbnail image. `autoThumbnailImage` overwrite the setting `auto_thumbnail_image` in the theme configuration file|
+|clearReading|Hide sidebar on all article page to let article take full width to improve reading, and enjoy wide images and cover images. Useless if `params.sidebarBehavior` is equal to `3` or `4`. (true: enable, false: disable). Default behavior : `params.clearReading` value in theme configuration file.|
+|autoThumbnailImage|Automatically select the cover image or the first photo from the gallery of a post if there is no thumbnail image as the thumbnail image. `autoThumbnailImage` overwrite the setting `autoThumbnailImage` in the theme configuration file|
 |thumbnailImage|Image displayed in index view.|
-|thumbnailImagePosition|Display thumbnail image at the right of title in index pages (`right`, `left` or `bottom`). `thumbnailImagePosition` overwrite the setting `thumbnail_image_position` in the theme configuration file|
+|thumbnailImagePosition|Display thumbnail image at the right of title in index pages (`right`, `left` or `bottom`). `thumbnailImagePosition` overwrite the setting `thumbnailImagePosition` in the theme configuration file|
 |metaAlignment|Meta (title, date and categories) alignment (right, left or center). Default behavior : left|
 |coverImage|Image displayed in full size at the top of your post in post view. If thumbnail image is not configured, cover image is also used as thumbnail image. Check the beautiful demo here : [Cover image demo](https://tranquilpeak.kakawait.com/2015/05/cover-image-showcase/)|
 |coverSize|`partial`: cover image take a part of the screen height (60%), `full`: cover image take the entire screen height.|
 |coverCaption|Add a caption under the cover image : [Cover caption demo](https://tranquilpeak.kakawait.com/2015/05/cover-image-showcase/)|
 |coverMeta|`in`: display post meta (title, date and categories) on cover image, `out`: display meta (title, date and categories) under cover image as usual. Default behavior : `in`|
 |gallery|Images displayed in an image gallery (with fancybox) at the end of the post. If thumbnail image is not configured and cover image too, the first photo is used as thumbnail image. format: `original url [thumbnail url] [caption]`, E.g : `https://example.com/original.jpg https://example.com/thumbnail.jpg "New York"`|
-|comments|Disable the comment of the post.
+|comments|`true`: Show the comment of the post.|
+|showDate|`true`: Show the date when `true` (default)|
+|showTags|`true`: show tags of this page.|
+|showPagination|`true`: show pagination.|
+|showSocial|`true`: show social button such as share on Twitter, Facebook...|
+|showMeta|`true`: Show post meta (date, categories).|
+|showActions|`true`: Show post actions (navigation, share links).|
 
 Example: 
 A post on index page will look like this with :`thumbnailImagePosition` set to `bottom`:  
@@ -448,11 +591,11 @@ The same with : `thumbnailImagePosition` set to `left`:
 
 Use: 
 
-- `<!-- more -->` to define post excerpt and keep the post excerpt in the post content
+- `<!--more-->` to define post excerpt and keep the post excerpt in the post content
 
 ### Display table of contents
 
-As post excerpt feature enable with `<!-- more -->` comment, you can display the table of contents of a post with  `<!-- toc -->`.  Place this comment where you want to display the table of content.
+As post excerpt feature enable with `<!--more-->` comment, you can display the table of contents of a post with  `<!-- toc -->`.  Place this comment where you want to display the table of content.
   
 Here is what looks like the table of contents generated:  
 ![thumbnail-image-position-left](https://s3-ap-northeast-1.amazonaws.com/tranquilpeak-hexo-theme/docs/1.4.0/toc-400.png) 
@@ -591,6 +734,46 @@ E.g:
 |src|Path to the original image.|
 |title (optional)|Title of image displayed in a caption under image. `Alt` HTML attribute will use this title. E.g : `"A beautiful sunrise"`.| 
   
+
+## Writing pages ##
+
+Sometimes you need to create a **page** that is **not** a **regular blog post**,
+where you want to hide the date, social sharing buttons, tags, categories 
+and pagination.
+This is the case for the blog pages _About_ or _Contact_ for instance which do
+not need to be timestamped (nor tagged or categorized) nor provide 
+pagination and are not intended to be shared on social networks.
+
+In order to create such a page you can proceed like so:
+
+```
+hugo new page/contact.md
+```
+
+This creates the file `contact.md` in the directory `content/page`
+pre-populated with the following front matter.
+
+```yaml
+---
+title: "New Page"
+categories:
+- category
+- subcategory
+tags:
+- tag1
+- tag2
+keywords:
+- tech
+comments:       false
+showMeta:       false
+showActions:    false
+#thumbnailImage: //example.com/image.jpg
+---
+
+```
+
+The rest is basically the same as for a regular _[post](#writing-posts)_.
+
 ## Running ##
 
 Run `hugo server` and start writing! :)
